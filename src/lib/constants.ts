@@ -42,7 +42,6 @@ export const HOURS: DaySchedule[] = [
 export const NAV_LINKS = [
   { label: "Accueil", href: "/" },
   { label: "Menu", href: "/menu" },
-  { label: "Commander", href: "/commander" },
   { label: "Galerie", href: "/galerie" },
   { label: "Contact", href: "/contact" },
 ];

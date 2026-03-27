@@ -48,7 +48,7 @@ export default function OrderForm({ onConfirm }: OrderFormProps) {
       customer_phone: data.phone,
       pickup_time: data.pickupTime,
       comment: data.comment || null,
-      items: items.map((i) => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })),
+      items: items.map((i) => ({ id: i.id, cartId: i.cartId, name: i.name, price: i.price, quantity: i.quantity, options: i.options })),
       total,
     });
 

@@ -80,7 +80,7 @@ export default function HeroSection() {
           transition={{ delay: 1.2, duration: 0.5 }}
         >
           <NeonButton
-            href="/commander"
+            href="/menu"
             variant="pink"
             size="lg"
             className="animate-[neon-pulse_2s_infinite]"

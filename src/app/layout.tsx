@@ -164,7 +164,7 @@ function FaqJsonLd() {
         name: "Comment commander en Click & Collect au Bernimois ?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Rendez-vous sur notre page Commander, composez votre menu en ajoutant les plats au panier, choisissez votre créneau de retrait, et confirmez. Vous recevrez un numéro de commande à présenter au comptoir.",
+          text: "Rendez-vous sur notre page Menu, choisissez votre produit, personnalisez-le (formule, sauces, suppléments), ajoutez au panier, puis validez votre commande. Vous recevrez un numéro de commande à présenter au comptoir.",
         },
       },
       {

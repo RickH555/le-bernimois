@@ -81,10 +81,10 @@ export default function Footer() {
             </div>
             <div className="mt-6">
               <Link
-                href="/commander"
+                href="/menu"
                 className="inline-block rounded-sm border border-neon-pink bg-neon-pink/10 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-neon-pink transition-all hover:bg-neon-pink hover:text-white hover:shadow-[0_0_20px_rgba(255,45,120,0.4)]"
               >
-                Commander
+                Voir le Menu
               </Link>
             </div>
           </div>

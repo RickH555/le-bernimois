@@ -1,10 +1,19 @@
+export type Badge = "Best-seller" | "Populaire" | "Nouveau" | "Spicy" | "XXXL";
+
 export interface MenuItem {
   id: string;
+  slug: string;
   name: string;
   description: string;
+  longDescription: string;
   price: number;
+  priceSolo: number;
+  priceMenu: number | null;
   category: string;
   image: string;
+  badge?: Badge;
+  sauces?: string[];
+  supplements?: string[];
   popular?: boolean;
 }
 
@@ -12,283 +21,474 @@ export interface MenuCategory {
   id: string;
   name: string;
   emoji: string;
+  image: string;
+  description: string;
 }
 
 export const categories: MenuCategory[] = [
-  { id: "burgers", name: "Burgers", emoji: "🍔" },
-  { id: "tacos", name: "Tacos", emoji: "🌮" },
-  { id: "kebabs", name: "Kebabs", emoji: "🥙" },
-  { id: "boissons", name: "Boissons", emoji: "🥤" },
-  { id: "desserts", name: "Desserts", emoji: "🍩" },
+  { id: "burgers", name: "Burgers", emoji: "\u{1F354}", image: "/images/menu/burger.jpg", description: "Burgers artisanaux, faits maison" },
+  { id: "tacos", name: "Tacos", emoji: "\u{1F32E}", image: "/images/menu/tacos.jpg", description: "Tacos g\u00e9n\u00e9reux et croustillants" },
+  { id: "kebabs", name: "Kebabs", emoji: "\u{1F959}", image: "/images/menu/kebab.jpg", description: "Kebabs grill\u00e9s \u00e0 la perfection" },
+  { id: "boissons", name: "Boissons", emoji: "\u{1F964}", image: "/images/menu/coca-cola.jpg", description: "Boissons fra\u00eeches et milkshakes" },
+  { id: "desserts", name: "Desserts", emoji: "\u{1F369}", image: "/images/menu/brownie.jpg", description: "Desserts gourmands faits maison" },
 ];
 
 export const menuItems: MenuItem[] = [
-  // ─── BURGERS — 8 items, 7 images uniques ───
+  // ─── BURGERS — 8 items ───
   {
     id: "burger-classic",
+    slug: "classic-burger",
     name: "Classic Burger",
     description: "Steak haché, salade, tomate, oignon, sauce ketchup-mayo",
+    longDescription: "Notre Classic Burger, c'est le retour aux sources. Un steak haché de boeuf 100% frais, grillé à la flamme, accompagné de salade croquante, de tomate juteuse, d'oignon frais et de notre duo de sauces ketchup-mayo maison. Simple, efficace, savoureux.",
+    priceSolo: 6.50,
+    priceMenu: 9.50,
     price: 6.50,
     category: "burgers",
-    image: "/images/menu/burger-2.jpg",        // 1 steak, salade, tomate, planche bois
+    image: "/images/menu/burger-2.jpg",
+    sauces: ["sauce-ketchup", "sauce-mayo", "sauce-bbq", "sauce-algerienne", "sauce-samourai"],
+    supplements: ["supp-cheddar", "supp-bacon", "supp-oeuf", "supp-steak"],
   },
   {
     id: "burger-cheese",
+    slug: "cheese-burger",
     name: "Cheese Burger",
     description: "Steak haché, double cheddar fondu, bacon, sauce burger",
+    longDescription: "Le Cheese Burger du Bernimois, c'est le classique américain revisité. Steak haché juteux, double tranche de cheddar fondu qui coule à la perfection, bacon croustillant et notre sauce burger signature. Un incontournable.",
+    priceSolo: 7.50,
+    priceMenu: 10.50,
     price: 7.50,
     category: "burgers",
-    image: "/images/menu/cheese-burger.jpg",   // 1 steak, cheddar fondu, bacon, fond noir
+    image: "/images/menu/cheese-burger.jpg",
+    badge: "Populaire",
+    sauces: ["sauce-ketchup", "sauce-mayo", "sauce-bbq", "sauce-biggy"],
+    supplements: ["supp-cheddar", "supp-bacon", "supp-oeuf", "supp-steak"],
   },
   {
     id: "burger-bernimois",
+    slug: "le-bernimois",
     name: "Le Bernimois",
     description: "Double steak, cheddar fondu, sauce maison, oignons caramélisés, bacon",
+    longDescription: "Notre fierté, notre signature. Le Bernimois c'est un double steak haché de boeuf frais, du cheddar fondu en cascade, des oignons caramélisés au beurre, du bacon fumé croustillant et notre sauce maison secrète. Le burger qui a fait la réputation du snack. À essayer absolument.",
+    priceSolo: 9.50,
+    priceMenu: 12.50,
     price: 9.50,
     category: "burgers",
-    image: "/images/menu/burger.jpg",          // double steak, cheddar, bacon, ardoise
+    image: "/images/menu/burger.jpg",
+    badge: "Best-seller",
     popular: true,
+    sauces: ["sauce-ketchup", "sauce-mayo", "sauce-bbq", "sauce-biggy", "sauce-samourai"],
+    supplements: ["supp-cheddar", "supp-bacon", "supp-oeuf", "supp-steak", "supp-onion-rings"],
   },
   {
     id: "burger-chicken",
+    slug: "chicken-burger",
     name: "Chicken Burger",
     description: "Filet de poulet pané, salade, tomate, sauce mayo-curry",
+    longDescription: "Pour les amateurs de poulet, notre Chicken Burger est un must. Filet de poulet pané maison, doré et croustillant, accompagné de salade fraîche, tomate et notre sauce mayo-curry onctueuse. Léger mais généreux.",
+    priceSolo: 7.50,
+    priceMenu: 10.50,
     price: 7.50,
     category: "burgers",
-    image: "/images/menu/chicken-burger.jpg",  // poulet pané, sauce curry
+    image: "/images/menu/chicken-burger.jpg",
+    sauces: ["sauce-curry", "sauce-mayo", "sauce-algerienne", "sauce-samourai"],
+    supplements: ["supp-cheddar", "supp-bacon", "supp-oeuf", "supp-avocat"],
   },
   {
     id: "burger-double",
+    slug: "double-smash",
     name: "Double Smash",
     description: "Double steak smashé, cheese, salade, oignons, sauce spéciale",
+    longDescription: "Le Double Smash, c'est la tendance street food à l'état pur. Deux steaks smashés ultra-fins pour un croustillant maximal, du cheese fondant, de la salade, des oignons frais et notre sauce spéciale. Texture incroyable, goût addictif.",
+    priceSolo: 10.50,
+    priceMenu: 13.50,
     price: 10.50,
     category: "burgers",
-    image: "/images/menu/smash-burger.jpg",    // smash burger, cheese fondu, sauce
+    image: "/images/menu/smash-burger.jpg",
+    badge: "Nouveau",
+    sauces: ["sauce-ketchup", "sauce-mayo", "sauce-bbq", "sauce-biggy", "sauce-samourai"],
+    supplements: ["supp-cheddar", "supp-bacon", "supp-oeuf", "supp-steak", "supp-jalapenos"],
   },
   {
     id: "burger-bbq",
+    slug: "bbq-burger",
     name: "BBQ Burger",
     description: "Steak haché, cheddar, oignons rings, sauce BBQ fumée",
+    longDescription: "Le BBQ Burger, c'est le goût fumé qui fait toute la différence. Steak haché grillé, cheddar fondu, onion rings croustillants maison et notre sauce BBQ fumée au hickory. Un voyage gustatif dans le sud des USA.",
+    priceSolo: 8.50,
+    priceMenu: 11.50,
     price: 8.50,
     category: "burgers",
-    image: "/images/menu/bbq-burger.jpg",      // steak, onion rings, sauce BBQ
+    image: "/images/menu/bbq-burger.jpg",
+    sauces: ["sauce-bbq", "sauce-ketchup", "sauce-mayo"],
+    supplements: ["supp-cheddar", "supp-bacon", "supp-onion-rings", "supp-jalapenos"],
   },
   {
     id: "burger-veggie",
+    slug: "veggie-burger",
     name: "Veggie Burger",
     description: "Galette de légumes, avocat, roquette, sauce yaourt-citron",
+    longDescription: "Notre option végétarienne est tout sauf ennuyeuse. Une galette de légumes maison croustillante, de l'avocat crémeux, de la roquette poivrée et notre sauce yaourt-citron rafraîchissante. La preuve qu'on peut se régaler sans viande.",
+    priceSolo: 8.00,
+    priceMenu: 11.00,
     price: 8.00,
     category: "burgers",
-    image: "/images/menu/veggie-burger.jpg",   // galette légumes, avocat, roquette
+    image: "/images/menu/veggie-burger.jpg",
+    sauces: ["sauce-mayo", "sauce-curry"],
+    supplements: ["supp-cheddar", "supp-avocat", "supp-oeuf"],
   },
   {
     id: "burger-fish",
+    slug: "fish-burger",
     name: "Fish Burger",
     description: "Filet de poisson pané, salade, tartare maison, citron",
+    longDescription: "Le Fish Burger apporte une touche de fraîcheur à notre carte. Filet de poisson pané croustillant, salade croquante et notre sauce tartare maison au citron. Léger, savoureux, parfait pour changer des classiques.",
+    priceSolo: 8.00,
+    priceMenu: 11.00,
     price: 8.00,
     category: "burgers",
-    image: "/images/menu/fish-burger.jpg",     // poisson pané, tartare, citron
+    image: "/images/menu/fish-burger.jpg",
+    sauces: ["sauce-mayo", "sauce-blanche"],
+    supplements: ["supp-cheddar", "supp-avocat"],
   },
 
-  // ─── TACOS — 6 items, 6 images uniques ───
+  // ─── TACOS — 6 items ───
   {
     id: "tacos-classique",
+    slug: "tacos-classique",
     name: "Tacos Classique",
     description: "Viande au choix, frites, fromage, sauce au choix",
+    longDescription: "Le Tacos Classique, c'est la base incontournable. Choisissez votre viande (boeuf, poulet ou mixte), ajoutez des frites dorées, du fromage fondu et votre sauce préférée. Le tout dans une galette grillée et croustillante.",
+    priceSolo: 6.50,
+    priceMenu: 9.50,
     price: 6.50,
     category: "tacos",
-    image: "/images/menu/tacos.jpg",           // tacos coupé, poulet, fromage, frites
+    image: "/images/menu/tacos.jpg",
+    sauces: ["sauce-blanche", "sauce-algerienne", "sauce-samourai", "sauce-bbq", "sauce-fromagere", "sauce-harissa"],
+    supplements: ["supp-cheddar", "supp-nuggets", "supp-frites", "supp-cordon-bleu"],
   },
   {
     id: "tacos-cordon-bleu",
+    slug: "tacos-cordon-bleu",
     name: "Tacos Cordon Bleu",
     description: "Cordon bleu, frites, fromage fondu, sauce algérienne",
+    longDescription: "Notre star ! Le Tacos Cordon Bleu combine le croustillant du cordon bleu pané maison avec des frites dorées, du fromage fondu en cascade et notre sauce algérienne maison. Le tacos le plus commandé, et pour cause.",
+    priceSolo: 8.50,
+    priceMenu: 11.50,
     price: 8.50,
     category: "tacos",
-    image: "/images/menu/tacos-cordon-bleu.jpg", // cordon bleu pané, frites, fromage
+    image: "/images/menu/tacos-cordon-bleu.jpg",
+    badge: "Best-seller",
     popular: true,
+    sauces: ["sauce-algerienne", "sauce-blanche", "sauce-fromagere", "sauce-samourai"],
+    supplements: ["supp-cheddar", "supp-nuggets", "supp-frites", "supp-cordon-bleu"],
   },
   {
     id: "tacos-mixte",
+    slug: "tacos-mixte",
     name: "Tacos Mixte",
     description: "Viande hachée + poulet, frites, fromage, sauce blanche et algérienne",
+    longDescription: "Le Tacos Mixte, c'est le meilleur des deux mondes. Viande hachée savoureuse et poulet grillé, réunis avec des frites, du fromage fondu et le duo de sauces blanche et algérienne. Pour ceux qui ne veulent pas choisir.",
+    priceSolo: 8.00,
+    priceMenu: 11.00,
     price: 8.00,
     category: "tacos",
-    image: "/images/menu/tacos-mixte.jpg",     // tacos ouvert viande + frites + sauce
+    image: "/images/menu/tacos-mixte.jpg",
+    sauces: ["sauce-blanche", "sauce-algerienne", "sauce-samourai", "sauce-bbq", "sauce-fromagere"],
+    supplements: ["supp-cheddar", "supp-nuggets", "supp-frites"],
   },
   {
     id: "tacos-nuggets",
+    slug: "tacos-nuggets",
     name: "Tacos Nuggets",
     description: "Nuggets de poulet, frites, fromage, sauce BBQ",
+    longDescription: "Le Tacos Nuggets, c'est le plaisir coupable. Des nuggets de poulet croustillants, des frites dorées, du fromage fondant et une sauce BBQ fumée. Crunchy, cheesy, addictif.",
+    priceSolo: 7.50,
+    priceMenu: 10.50,
     price: 7.50,
     category: "tacos",
-    image: "/images/menu/tacos-nuggets.jpg",   // nuggets, frites, sauce BBQ dans wrap
+    image: "/images/menu/tacos-nuggets.jpg",
+    sauces: ["sauce-bbq", "sauce-blanche", "sauce-algerienne", "sauce-fromagere"],
+    supplements: ["supp-cheddar", "supp-nuggets", "supp-frites"],
   },
   {
     id: "tacos-xl",
+    slug: "tacos-xl",
     name: "Tacos XL",
     description: "Double viande, double frites, triple fromage, 2 sauces au choix",
+    longDescription: "Le Tacos XL, c'est pour les gros appétits. Double portion de viande, double frites, triple fromage fondant et deux sauces au choix. Un monument de générosité dans une galette XXL. Attention, estomac solide requis.",
+    priceSolo: 11.00,
+    priceMenu: 14.00,
     price: 11.00,
     category: "tacos",
-    image: "/images/menu/tacos-2.jpg",         // gros tacos grillé, fromage coulant, frites
+    image: "/images/menu/tacos-2.jpg",
+    badge: "XXXL",
+    sauces: ["sauce-blanche", "sauce-algerienne", "sauce-samourai", "sauce-bbq", "sauce-fromagere", "sauce-harissa"],
+    supplements: ["supp-cheddar", "supp-nuggets", "supp-frites", "supp-cordon-bleu", "supp-steak"],
   },
   {
     id: "tacos-gratine",
+    slug: "tacos-gratine",
     name: "Tacos Gratiné",
     description: "Viande, frites, fromage gratiné au four, sauce fromagère",
+    longDescription: "Le Tacos Gratiné passe au four pour un résultat unique. Viande savoureuse, frites, et surtout un fromage gratiné bullé et doré. Le tout nappé de sauce fromagère. Un tacos chaud et réconfortant comme on les aime.",
+    priceSolo: 9.00,
+    priceMenu: 12.00,
     price: 9.00,
     category: "tacos",
-    image: "/images/menu/tacos-gratine.jpg",   // tacos gratinés au four, fromage bullé
+    image: "/images/menu/tacos-gratine.jpg",
+    badge: "Populaire",
+    sauces: ["sauce-fromagere", "sauce-blanche", "sauce-algerienne"],
+    supplements: ["supp-cheddar", "supp-nuggets", "supp-frites", "supp-cordon-bleu"],
   },
 
-  // ─── KEBABS — 5 items, 5 images uniques ───
+  // ─── KEBABS — 5 items ───
   {
     id: "kebab-galette",
+    slug: "kebab-galette",
     name: "Kebab Galette",
     description: "Viande grillée, salade, tomates, oignons, sauce blanche",
+    longDescription: "Le Kebab Galette, c'est notre classique le plus demandé. Viande grillée à la broche, tranchée minute, avec de la salade fraîche, des tomates, des oignons et notre sauce blanche crémeuse. Le tout enroulé dans une galette dorée.",
+    priceSolo: 7.50,
+    priceMenu: 10.50,
     price: 7.50,
     category: "kebabs",
-    image: "/images/menu/kebab.jpg",           // galette wrap, viande, crudités, sauce blanche
+    image: "/images/menu/kebab.jpg",
+    badge: "Best-seller",
     popular: true,
+    sauces: ["sauce-blanche", "sauce-algerienne", "sauce-samourai", "sauce-harissa", "sauce-bbq"],
+    supplements: ["supp-cheddar", "supp-frites", "supp-oeuf"],
   },
   {
     id: "kebab-assiette",
+    slug: "kebab-assiette",
     name: "Assiette Kebab",
     description: "Viande grillée, frites, salade composée, sauce au choix",
+    longDescription: "L'Assiette Kebab, c'est la version complète et généreuse. Viande grillée tranchée minute, frites dorées, salade composée avec tomates, oignons, cornichons et votre sauce préférée. Un repas complet dans une assiette.",
+    priceSolo: 10.00,
+    priceMenu: null,
     price: 10.00,
     category: "kebabs",
-    image: "/images/menu/kebab-2.jpg",         // assiette, viande tranchée, frites, salade
+    image: "/images/menu/kebab-2.jpg",
+    sauces: ["sauce-blanche", "sauce-algerienne", "sauce-samourai", "sauce-harissa"],
+    supplements: ["supp-cheddar", "supp-frites", "supp-oeuf"],
   },
   {
     id: "kebab-durum",
+    slug: "durum",
     name: "Durum",
     description: "Viande grillée en wrap, crudités, sauce blanche-harissa",
+    longDescription: "Le Durum, c'est le kebab version wrap. Viande grillée enroulée dans une galette fine avec des crudités fraîches et notre combinaison signature sauce blanche et harissa. Pratique, savoureux, parfait à emporter.",
+    priceSolo: 7.00,
+    priceMenu: 10.00,
     price: 7.00,
     category: "kebabs",
-    image: "/images/menu/durum.jpg",           // wrap roulé, viande, harissa + sauce blanche
+    image: "/images/menu/durum.jpg",
+    sauces: ["sauce-blanche", "sauce-harissa", "sauce-algerienne", "sauce-samourai"],
+    supplements: ["supp-cheddar", "supp-frites"],
   },
   {
     id: "kebab-poulet",
+    slug: "kebab-poulet",
     name: "Kebab Poulet",
     description: "Poulet mariné grillé, salade, tomates, sauce curry",
+    longDescription: "Le Kebab Poulet, c'est une alternative légère et savoureuse. Poulet mariné aux épices, grillé à la broche, avec salade fraîche, tomates et notre sauce curry maison. Pour ceux qui préfèrent la volaille.",
+    priceSolo: 7.50,
+    priceMenu: 10.50,
     price: 7.50,
     category: "kebabs",
-    image: "/images/menu/kebab-poulet.jpg",    // poulet grillé, curry, wrap
+    image: "/images/menu/kebab-poulet.jpg",
+    sauces: ["sauce-curry", "sauce-blanche", "sauce-algerienne", "sauce-mayo"],
+    supplements: ["supp-cheddar", "supp-frites", "supp-avocat"],
   },
   {
     id: "kebab-xl",
+    slug: "kebab-xl",
     name: "Kebab XL",
     description: "Double viande, double garniture, frites dans le pain, 2 sauces",
+    longDescription: "Le Kebab XL, c'est le kebab sans compromis. Double portion de viande grillée, double garniture de crudités, des frites directement dans le pain et deux sauces au choix. Pour les très gros appétits.",
+    priceSolo: 9.50,
+    priceMenu: 12.50,
     price: 9.50,
     category: "kebabs",
-    image: "/images/menu/kebab-xl.jpg",        // gros kebab, frites, ketchup, planche
+    image: "/images/menu/kebab-xl.jpg",
+    badge: "XXXL",
+    sauces: ["sauce-blanche", "sauce-algerienne", "sauce-samourai", "sauce-harissa", "sauce-bbq"],
+    supplements: ["supp-cheddar", "supp-frites", "supp-oeuf", "supp-steak"],
   },
 
-  // ─── BOISSONS — 8 items, 8 images uniques ───
+  // ─── BOISSONS — 8 items ───
   {
     id: "boisson-coca",
+    slug: "coca-cola",
     name: "Coca-Cola 33cl",
     description: "Coca-Cola classique en canette",
+    longDescription: "Le Coca-Cola classique en canette 33cl. Frais, pétillant, intemporel. Le compagnon parfait de votre burger ou tacos.",
+    priceSolo: 2.00,
+    priceMenu: null,
     price: 2.00,
     category: "boissons",
-    image: "/images/menu/coca-cola.jpg",       // canette Coca-Cola fond noir
+    image: "/images/menu/coca-cola.jpg",
   },
   {
     id: "boisson-fanta",
+    slug: "fanta-orange",
     name: "Fanta Orange 33cl",
     description: "Fanta Orange en canette",
+    longDescription: "Fanta Orange en canette 33cl. Fruité, rafraîchissant, pétillant. L'orange qui pétille.",
+    priceSolo: 2.00,
+    priceMenu: null,
     price: 2.00,
     category: "boissons",
-    image: "/images/menu/fanta.jpg",           // canette Fanta Orange
+    image: "/images/menu/fanta.jpg",
   },
   {
     id: "boisson-sprite",
+    slug: "sprite",
     name: "Sprite 33cl",
     description: "Sprite en canette",
+    longDescription: "Sprite en canette 33cl. Citron-lime, frais et désaltérant.",
+    priceSolo: 2.00,
+    priceMenu: null,
     price: 2.00,
     category: "boissons",
-    image: "/images/menu/sprite.jpg",          // canette Sprite verte citron
+    image: "/images/menu/sprite.jpg",
   },
   {
     id: "boisson-ice-tea",
+    slug: "ice-tea-peche",
     name: "Ice Tea Pêche 33cl",
     description: "Ice Tea saveur pêche en canette",
+    longDescription: "Ice Tea saveur pêche en canette 33cl. Thé glacé fruité et rafraîchissant, parfait pour l'été.",
+    priceSolo: 2.00,
+    priceMenu: null,
     price: 2.00,
     category: "boissons",
-    image: "/images/menu/ice-tea.jpg",         // canette Lipton Ice Tea Peach
+    image: "/images/menu/ice-tea.jpg",
   },
   {
     id: "boisson-eau",
+    slug: "eau-minerale",
     name: "Eau minérale 50cl",
     description: "Eau minérale plate",
+    longDescription: "Eau minérale plate 50cl. Simple, pure, essentielle.",
+    priceSolo: 1.50,
+    priceMenu: null,
     price: 1.50,
     category: "boissons",
-    image: "/images/menu/eau.jpg",             // bouteille eau minérale
+    image: "/images/menu/eau.jpg",
   },
   {
     id: "boisson-oasis",
+    slug: "oasis-tropical",
     name: "Oasis Tropical 33cl",
     description: "Oasis goût tropical en canette",
+    longDescription: "Oasis Tropical 33cl. Cocktail de fruits tropicaux, frais et fruité.",
+    priceSolo: 2.00,
+    priceMenu: null,
     price: 2.00,
     category: "boissons",
-    image: "/images/menu/oasis.jpg",           // jus tropical versé
+    image: "/images/menu/oasis.jpg",
   },
   {
     id: "boisson-perrier",
+    slug: "perrier",
     name: "Perrier 33cl",
     description: "Eau gazeuse Perrier",
+    longDescription: "Perrier 33cl. L'eau gazeuse française par excellence, fine et pétillante.",
+    priceSolo: 2.50,
+    priceMenu: null,
     price: 2.50,
     category: "boissons",
-    image: "/images/menu/perrier.jpg",         // bouteille Perrier
+    image: "/images/menu/perrier.jpg",
   },
   {
     id: "boisson-milkshake",
+    slug: "milkshake",
     name: "Milkshake",
     description: "Vanille, chocolat ou fraise — fait maison",
+    longDescription: "Notre milkshake fait maison, onctueux et généreux. Au choix : vanille onctueuse, chocolat intense ou fraise fruitée. Préparé à la minute avec de la vraie glace.",
+    priceSolo: 4.50,
+    priceMenu: null,
     price: 4.50,
     category: "boissons",
-    image: "/images/menu/boissons-2.jpg",      // milkshakes chocolat & vanille
+    image: "/images/menu/boissons-2.jpg",
+    badge: "Populaire",
   },
 
-  // ─── DESSERTS — 5 items, 5 images uniques ───
+  // ─── DESSERTS — 5 items ───
   {
     id: "dessert-tiramisu",
+    slug: "tiramisu-maison",
     name: "Tiramisu Maison",
     description: "Tiramisu crémeux au mascarpone et café",
+    longDescription: "Notre Tiramisu Maison est préparé chaque jour. Couches crémeuses de mascarpone, biscuits imbibés de café, saupoudré de cacao amer. Un dessert italien authentique, fait avec amour.",
+    priceSolo: 4.00,
+    priceMenu: null,
     price: 4.00,
     category: "desserts",
-    image: "/images/menu/tiramisu.jpg",        // tiramisu en verre, cacao, mascarpone
+    image: "/images/menu/tiramisu.jpg",
+    badge: "Populaire",
   },
   {
     id: "dessert-brownie",
+    slug: "brownie-chocolat",
     name: "Brownie Chocolat",
     description: "Brownie fondant aux pépites de chocolat noir",
+    longDescription: "Notre Brownie Chocolat est cuit chaque jour. Fondant à l'intérieur, légèrement croustillant à l'extérieur, parsemé de pépites de chocolat noir. Le dessert réconfortant par excellence.",
+    priceSolo: 3.50,
+    priceMenu: null,
     price: 3.50,
     category: "desserts",
-    image: "/images/menu/brownie.jpg",         // brownies chocolat fondants
+    image: "/images/menu/brownie.jpg",
   },
   {
     id: "dessert-donut",
+    slug: "donut-glace",
     name: "Donut Glacé",
     description: "Donut au glaçage au choix : chocolat, fraise ou caramel",
+    longDescription: "Nos Donuts Glacés sont moelleux et généreux. Choisissez votre glaçage : chocolat fondant, fraise fruitée ou caramel beurre salé. Parfait pour finir sur une note sucrée.",
+    priceSolo: 2.50,
+    priceMenu: null,
     price: 2.50,
     category: "desserts",
-    image: "/images/menu/donut.jpg",           // donuts glacés colorés fond noir
+    image: "/images/menu/donut.jpg",
+    badge: "Nouveau",
   },
   {
     id: "dessert-cookie",
+    slug: "cookie-geant",
     name: "Cookie Géant",
     description: "Cookie moelleux aux pépites de chocolat",
+    longDescription: "Notre Cookie Géant est un classique. Moelleux au centre, croustillant sur les bords, généreux en pépites de chocolat. Fait maison, comme chez mamie.",
+    priceSolo: 2.50,
+    priceMenu: null,
     price: 2.50,
     category: "desserts",
-    image: "/images/menu/cookie.jpg",          // cookies pépites chocolat dans bol
+    image: "/images/menu/cookie.jpg",
   },
   {
     id: "dessert-glace",
+    slug: "glace-2-boules",
     name: "Glace 2 Boules",
     description: "Glace artisanale — parfum au choix",
+    longDescription: "Nos Glaces artisanales en 2 boules, au parfum de votre choix. Vanille, chocolat, fraise, pistache, caramel... Demandez les parfums du jour !",
+    priceSolo: 3.50,
+    priceMenu: null,
     price: 3.50,
     category: "desserts",
-    image: "/images/menu/desserts-2.jpg",      // 2 boules glace chocolat fraise
+    image: "/images/menu/desserts-2.jpg",
   },
 ];
+
+export function getMenuItemBySlug(slug: string): MenuItem | undefined {
+  return menuItems.find((item) => item.slug === slug);
+}
+
+export function getItemsByCategory(categoryId: string): MenuItem[] {
+  return menuItems.filter((item) => item.category === categoryId);
+}
+
+export function getCategoryById(categoryId: string): MenuCategory | undefined {
+  return categories.find((cat) => cat.id === categoryId);
+}

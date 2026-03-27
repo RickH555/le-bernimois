@@ -62,9 +62,9 @@ export default function Navbar({ cartCount = 0, onCartClick }: NavbarProps) {
             ))}
           </div>
 
-          {/* Right side: cart + hamburger */}
+          {/* Right side: cart + panier + hamburger */}
           <div className="flex items-center gap-3">
-            {/* Cart icon */}
+            {/* Cart drawer toggle */}
             <button
               onClick={onCartClick}
               className="relative p-2 text-text-secondary transition-colors hover:text-neon-pink"
