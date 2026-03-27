@@ -1,0 +1,27 @@
+# Le Bernimois — Snack à Bernis (30620)
+
+## Description
+Le Bernimois est un snack de quartier situé à Bernis (30620), dans le Gard. Nous proposons des burgers artisanaux, des tacos généreux et des kebabs savoureux, préparés avec des produits frais.
+
+## Pages principales
+- Accueil : https://le-bernimois.vercel.app
+- Menu complet : https://le-bernimois.vercel.app/menu
+- Commander (Click & Collect) : https://le-bernimois.vercel.app/commander
+- Galerie : https://le-bernimois.vercel.app/galerie
+- Contact & Horaires : https://le-bernimois.vercel.app/contact
+
+## Spécialités
+- Le Bernimois Burger : double steak, cheddar fondu, sauce maison, oignons caramélisés, bacon (9.50€)
+- Tacos Cordon Bleu : cordon bleu, frites, fromage fondu, sauce algérienne (8.50€)
+- Kebab Galette : viande grillée, salade, tomates, oignons, sauce blanche (7.50€)
+
+## Horaires
+- Lundi : Fermé
+- Mardi à Jeudi : 11h30-14h00 / 18h00-22h00
+- Vendredi et Samedi : 11h30-14h00 / 18h00-22h30
+- Dimanche : 11h30-14h00 / 18h00-21h30
+
+## Contact
+- Adresse : Rue du Centre, 30620 Bernis, France
+- Téléphone : +33 4 66 XX XX XX
+- Email : contact@lebernimois.fr
