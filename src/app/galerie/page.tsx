@@ -8,17 +8,17 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const galleryItems = [
   { id: 1, title: "Double Cheeseburger bacon sur ardoise", image: "/images/menu/burger.jpg" },
-  { id: 2, title: "Tacos poulet fromage frites sur planche", image: "/images/menu/tacos.jpg" },
+  { id: 2, title: "Tacos cordon bleu, frites et fromage fondu", image: "/images/menu/tacos-cordon-bleu.jpg" },
   { id: 3, title: "Kebab galette sauce blanche", image: "/images/menu/kebab.jpg" },
-  { id: 4, title: "Milkshake fraise, jus d'orange, cola, eau citronnée", image: "/images/menu/boissons.jpg" },
-  { id: 5, title: "Brownie chocolat, donut glacé, tiramisu & cookie", image: "/images/menu/desserts.jpg" },
-  { id: 6, title: "Le Bernimois — façade de nuit", image: "/images/hero/hero.jpg" },
-  { id: 7, title: "Classic Burger salade tomate sur planche bois", image: "/images/menu/burger-2.jpg" },
-  { id: 8, title: "Tacos XL grillé fromage coulant avec frites", image: "/images/menu/tacos-2.jpg" },
-  { id: 9, title: "Assiette kebab, frites & salade composée", image: "/images/menu/kebab-2.jpg" },
-  { id: 10, title: "Milkshakes chocolat & vanille caramel", image: "/images/menu/boissons-2.jpg" },
-  { id: 11, title: "Glace artisanale 2 boules chocolat & fraise", image: "/images/menu/desserts-2.jpg" },
-  { id: 12, title: "Le Bernimois — intérieur du snack", image: "/images/hero/hero-2.jpg" },
+  { id: 4, title: "Chicken Burger poulet pané sauce curry", image: "/images/menu/chicken-burger.jpg" },
+  { id: 5, title: "Tacos gratiné au four", image: "/images/menu/tacos-gratine.jpg" },
+  { id: 6, title: "Assiette kebab, frites et salade", image: "/images/menu/kebab-2.jpg" },
+  { id: 7, title: "BBQ Burger onion rings sauce fumée", image: "/images/menu/bbq-burger.jpg" },
+  { id: 8, title: "Milkshakes chocolat & vanille caramel", image: "/images/menu/boissons-2.jpg" },
+  { id: 9, title: "Brownie, donut, tiramisu & cookie", image: "/images/menu/desserts.jpg" },
+  { id: 10, title: "Veggie Burger avocat roquette", image: "/images/menu/veggie-burger.jpg" },
+  { id: 11, title: "Glace artisanale 2 boules", image: "/images/menu/desserts-2.jpg" },
+  { id: 12, title: "Le Bernimois — façade de nuit", image: "/images/hero/hero-cyberpunk.png" },
 ];
 
 export default function GaleriePage() {
@@ -43,7 +43,6 @@ export default function GaleriePage() {
         </p>
       </ScrollReveal>
 
-      {/* Masonry grid */}
       <div className="mx-auto mt-8 max-w-6xl columns-2 gap-4 md:columns-3 lg:columns-4">
         {galleryItems.map((item, i) => (
           <ScrollReveal key={item.id} delay={i * 0.05}>
@@ -72,7 +71,6 @@ export default function GaleriePage() {
         ))}
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
@@ -89,7 +87,6 @@ export default function GaleriePage() {
             >
               <X size={28} />
             </button>
-
             <button
               className="absolute left-4 z-10 p-2 text-white/70 hover:text-white"
               onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -97,7 +94,6 @@ export default function GaleriePage() {
             >
               <ChevronLeft size={32} />
             </button>
-
             <motion.div
               key={lightboxIndex}
               className="relative h-[70vh] w-[85vw] max-w-3xl overflow-hidden rounded-xl border border-white/10"
@@ -120,7 +116,6 @@ export default function GaleriePage() {
                 </p>
               </div>
             </motion.div>
-
             <button
               className="absolute right-4 z-10 p-2 text-white/70 hover:text-white"
               onClick={(e) => { e.stopPropagation(); next(); }}

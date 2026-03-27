@@ -6,14 +6,6 @@ import { Plus } from "lucide-react";
 import type { MenuItem } from "@/lib/menu-data";
 import { useCart } from "@/lib/cart-context";
 
-const categoryImages: Record<string, string> = {
-  burgers: "/images/menu/burger.jpg",
-  tacos: "/images/menu/tacos.jpg",
-  kebabs: "/images/menu/kebab.jpg",
-  boissons: "/images/menu/boissons.jpg",
-  desserts: "/images/menu/desserts.jpg",
-};
-
 interface MenuCardProps {
   item: MenuItem;
 }
@@ -30,7 +22,7 @@ export default function MenuCard({ item }: MenuCardProps) {
       {/* Category image */}
       <div className="relative h-40 overflow-hidden">
         <Image
-          src={categoryImages[item.category] || categoryImages.burgers}
+          src={item.image}
           alt={item.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
