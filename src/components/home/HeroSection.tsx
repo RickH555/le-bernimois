@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import GlitchText from "../ui/GlitchText";
 import NeonButton from "../ui/NeonButton";
 import ParticleRain from "../ui/ParticleRain";
 
@@ -53,24 +52,16 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 px-4 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <GlitchText
-            text="LE BERNIMOIS"
-            as="h1"
-            className="text-5xl tracking-wider text-text-primary sm:text-6xl md:text-8xl"
-          />
-        </motion.div>
+        {/* H1 SEO-only — visually the neon sign on the image IS the title */}
+        <h1 className="sr-only">Le Bernimois — Burgers, Tacos, Kebabs à Bernis</h1>
 
         {/* Typed subtitle */}
         <motion.p
-          className="mt-4 font-body text-lg font-light tracking-widest text-text-secondary sm:text-xl md:text-2xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          className="font-body text-xl font-light tracking-widest text-text-primary sm:text-2xl md:text-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          style={{ textShadow: "0 0 20px rgba(0, 0, 0, 0.8)" }}
         >
           {typedText}
           {showCursor && (

@@ -7,18 +7,18 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const galleryItems = [
-  { id: 1, title: "Burger Le Bernimois", image: "/images/menu/burger.png" },
-  { id: 2, title: "Tacos Cordon Bleu", image: "/images/menu/tacos.png" },
-  { id: 3, title: "Kebab Galette XL", image: "/images/menu/kebab.png" },
-  { id: 4, title: "Milkshake & Boissons", image: "/images/menu/boissons.png" },
-  { id: 5, title: "Desserts Maison", image: "/images/menu/desserts.png" },
-  { id: 6, title: "Le Bernimois — Façade", image: "/images/hero/hero-cyberpunk.png" },
-  { id: 7, title: "Burger Le Bernimois", image: "/images/menu/burger.png" },
-  { id: 8, title: "Tacos Cordon Bleu", image: "/images/menu/tacos.png" },
-  { id: 9, title: "Kebab Galette XL", image: "/images/menu/kebab.png" },
-  { id: 10, title: "Milkshake & Boissons", image: "/images/menu/boissons.png" },
-  { id: 11, title: "Desserts Maison", image: "/images/menu/desserts.png" },
-  { id: 12, title: "Le Bernimois — Ambiance", image: "/images/hero/hero-cyberpunk.png" },
+  { id: 1, title: "Le Bernimois — Façade néon", image: "/images/hero/hero-cyberpunk.png" },
+  { id: 2, title: "Double Smash Burger néon", image: "/images/menu/burger.png" },
+  { id: 3, title: "Tacos frites fromage explosif", image: "/images/menu/tacos.png" },
+  { id: 4, title: "Kebab wrap grillé crudités", image: "/images/menu/kebab.png" },
+  { id: 5, title: "Milkshakes & cocktails néon", image: "/images/menu/boissons.png" },
+  { id: 6, title: "Brownie, donut & tiramisu", image: "/images/menu/desserts.png" },
+  { id: 7, title: "Le Bernimois — Vue de nuit", image: "/images/hero/hero-cyberpunk-2.png" },
+  { id: 8, title: "Cheese Burger double cheddar", image: "/images/menu/burger-2.png" },
+  { id: 9, title: "Tacos cheese frites doré", image: "/images/menu/tacos-2.png" },
+  { id: 10, title: "Kebab cornet sauce noire", image: "/images/menu/kebab-2.png" },
+  { id: 11, title: "Boissons fraîches au comptoir", image: "/images/menu/boissons-2.png" },
+  { id: 12, title: "Pâtisseries & gourmandises", image: "/images/menu/desserts-2.png" },
 ];
 
 export default function GaleriePage() {
@@ -61,8 +61,8 @@ export default function GaleriePage() {
                   className="object-cover transition-all duration-500 hover:brightness-110"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-                {/* Overlay with title */}
-                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-bg-primary/70 to-transparent p-3 opacity-0 transition-opacity group-hover:opacity-100 hover:opacity-100">
+                {/* Hover overlay with title */}
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-bg-primary/80 via-transparent to-transparent p-3 opacity-0 transition-opacity duration-300 hover:opacity-100">
                   <p className="font-display text-xs tracking-wider text-text-primary">
                     {item.title}
                   </p>
