@@ -1,9 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Plus } from "lucide-react";
 import type { MenuItem } from "@/lib/menu-data";
 import { useCart } from "@/lib/cart-context";
+
+const categoryImages: Record<string, string> = {
+  burgers: "/images/menu/burger.png",
+  tacos: "/images/menu/tacos.png",
+  kebabs: "/images/menu/kebab.png",
+  boissons: "/images/menu/boissons.png",
+  desserts: "/images/menu/desserts.png",
+};
 
 interface MenuCardProps {
   item: MenuItem;
@@ -18,36 +27,20 @@ export default function MenuCard({ item }: MenuCardProps) {
       whileHover={{ scale: 1.03 }}
       layout
     >
-      {/* Gradient placeholder image */}
+      {/* Category image */}
       <div className="relative h-40 overflow-hidden">
-        <div
-          className={`absolute inset-0 ${
-            item.category === "burgers"
-              ? "bg-gradient-to-br from-neon-pink/20 via-neon-yellow/10 to-bg-card"
-              : item.category === "tacos"
-              ? "bg-gradient-to-br from-neon-yellow/20 via-neon-pink/10 to-bg-card"
-              : item.category === "kebabs"
-              ? "bg-gradient-to-br from-neon-cyan/20 via-neon-purple/10 to-bg-card"
-              : item.category === "boissons"
-              ? "bg-gradient-to-br from-neon-cyan/20 via-neon-yellow/10 to-bg-card"
-              : "bg-gradient-to-br from-neon-purple/20 via-neon-pink/10 to-bg-card"
-          }`}
+        <Image
+          src={categoryImages[item.category] || categoryImages.burgers}
+          alt={item.name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
-        {/* Category emoji as visual placeholder */}
-        <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-30 transition-transform group-hover:scale-110">
-          {item.category === "burgers"
-            ? "🍔"
-            : item.category === "tacos"
-            ? "🌮"
-            : item.category === "kebabs"
-            ? "🥙"
-            : item.category === "boissons"
-            ? "🥤"
-            : "🍩"}
-        </div>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-bg-card/20 to-transparent" />
         {/* Popular badge */}
         {item.popular && (
-          <div className="absolute top-2 right-2 rounded-full bg-neon-yellow px-2 py-0.5 font-pixel text-[8px] text-bg-primary">
+          <div className="absolute top-2 right-2 rounded-full bg-neon-yellow px-2 py-0.5 font-pixel text-[8px] text-bg-primary shadow-[0_0_10px_rgba(255,229,0,0.4)]">
             POPULAIRE
           </div>
         )}

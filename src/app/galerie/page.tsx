@@ -1,23 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const galleryItems = [
-  { id: 1, title: "Burger Le Bernimois", gradient: "from-neon-pink/30 via-neon-yellow/20 to-bg-card", emoji: "🍔" },
-  { id: 2, title: "Tacos Cordon Bleu", gradient: "from-neon-yellow/30 via-neon-pink/20 to-bg-card", emoji: "🌮" },
-  { id: 3, title: "Kebab Galette XL", gradient: "from-neon-cyan/30 via-neon-purple/20 to-bg-card", emoji: "🥙" },
-  { id: 4, title: "Double Smash Burger", gradient: "from-neon-purple/30 via-neon-pink/20 to-bg-card", emoji: "🍔" },
-  { id: 5, title: "Tacos XL", gradient: "from-neon-yellow/30 via-neon-cyan/20 to-bg-card", emoji: "🌮" },
-  { id: 6, title: "Assiette Kebab", gradient: "from-neon-cyan/30 via-neon-yellow/20 to-bg-card", emoji: "🥙" },
-  { id: 7, title: "Milkshake Maison", gradient: "from-neon-pink/30 via-neon-purple/20 to-bg-card", emoji: "🥤" },
-  { id: 8, title: "Tiramisu Maison", gradient: "from-neon-purple/30 via-neon-yellow/20 to-bg-card", emoji: "🍩" },
-  { id: 9, title: "Ambiance Le Bernimois", gradient: "from-neon-cyan/30 via-neon-pink/20 to-bg-card", emoji: "🔥" },
-  { id: 10, title: "BBQ Burger", gradient: "from-neon-yellow/30 via-neon-pink/20 to-bg-card", emoji: "🍔" },
-  { id: 11, title: "Tacos Gratiné", gradient: "from-neon-pink/30 via-neon-cyan/20 to-bg-card", emoji: "🌮" },
-  { id: 12, title: "Brownie Chocolat", gradient: "from-neon-purple/30 via-neon-pink/20 to-bg-card", emoji: "🍫" },
+  { id: 1, title: "Burger Le Bernimois", image: "/images/menu/burger.png" },
+  { id: 2, title: "Tacos Cordon Bleu", image: "/images/menu/tacos.png" },
+  { id: 3, title: "Kebab Galette XL", image: "/images/menu/kebab.png" },
+  { id: 4, title: "Milkshake & Boissons", image: "/images/menu/boissons.png" },
+  { id: 5, title: "Desserts Maison", image: "/images/menu/desserts.png" },
+  { id: 6, title: "Le Bernimois — Façade", image: "/images/hero/hero-cyberpunk.png" },
+  { id: 7, title: "Burger Le Bernimois", image: "/images/menu/burger.png" },
+  { id: 8, title: "Tacos Cordon Bleu", image: "/images/menu/tacos.png" },
+  { id: 9, title: "Kebab Galette XL", image: "/images/menu/kebab.png" },
+  { id: 10, title: "Milkshake & Boissons", image: "/images/menu/boissons.png" },
+  { id: 11, title: "Desserts Maison", image: "/images/menu/desserts.png" },
+  { id: 12, title: "Le Bernimois — Ambiance", image: "/images/hero/hero-cyberpunk.png" },
 ];
 
 export default function GaleriePage() {
@@ -38,7 +39,7 @@ export default function GaleriePage() {
           GALERIE
         </h1>
         <p className="mt-2 text-center text-sm text-text-secondary">
-          Nos plats en images
+          Nos plats en images — style cyberpunk anime
         </p>
       </ScrollReveal>
 
@@ -47,17 +48,25 @@ export default function GaleriePage() {
         {galleryItems.map((item, i) => (
           <ScrollReveal key={item.id} delay={i * 0.05}>
             <motion.button
-              className={`mb-4 block w-full overflow-hidden rounded-lg border border-white/5 bg-gradient-to-br ${item.gradient}`}
-              style={{ height: `${180 + (i % 3) * 60}px` }}
+              className="mb-4 block w-full overflow-hidden rounded-lg border border-white/5"
               whileHover={{ scale: 1.02 }}
               onClick={() => setLightboxIndex(i)}
               aria-label={`Voir ${item.title}`}
             >
-              <div className="flex h-full flex-col items-center justify-center p-4">
-                <span className="text-5xl">{item.emoji}</span>
-                <p className="mt-2 text-center font-display text-xs tracking-wider text-text-primary/80">
-                  {item.title}
-                </p>
+              <div className="relative" style={{ height: `${180 + (i % 3) * 60}px` }}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-all duration-500 hover:brightness-110"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+                {/* Overlay with title */}
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-bg-primary/70 to-transparent p-3 opacity-0 transition-opacity group-hover:opacity-100 hover:opacity-100">
+                  <p className="font-display text-xs tracking-wider text-text-primary">
+                    {item.title}
+                  </p>
+                </div>
               </div>
             </motion.button>
           </ScrollReveal>
@@ -74,7 +83,6 @@ export default function GaleriePage() {
             exit={{ opacity: 0 }}
             onClick={() => setLightboxIndex(null)}
           >
-            {/* Close */}
             <button
               className="absolute top-4 right-4 z-10 p-2 text-white/70 hover:text-white"
               onClick={() => setLightboxIndex(null)}
@@ -83,7 +91,6 @@ export default function GaleriePage() {
               <X size={28} />
             </button>
 
-            {/* Prev */}
             <button
               className="absolute left-4 z-10 p-2 text-white/70 hover:text-white"
               onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -92,22 +99,29 @@ export default function GaleriePage() {
               <ChevronLeft size={32} />
             </button>
 
-            {/* Content */}
             <motion.div
               key={lightboxIndex}
-              className={`flex h-[60vh] w-[80vw] max-w-2xl flex-col items-center justify-center rounded-xl bg-gradient-to-br ${galleryItems[lightboxIndex].gradient} border border-white/10`}
+              className="relative h-[70vh] w-[85vw] max-w-3xl overflow-hidden rounded-xl border border-white/10"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <span className="text-8xl">{galleryItems[lightboxIndex].emoji}</span>
-              <p className="mt-4 font-display text-lg tracking-wider text-text-primary">
-                {galleryItems[lightboxIndex].title}
-              </p>
+              <Image
+                src={galleryItems[lightboxIndex].image}
+                alt={galleryItems[lightboxIndex].title}
+                fill
+                className="object-cover"
+                sizes="85vw"
+                quality={90}
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <p className="font-display text-lg tracking-wider text-text-primary">
+                  {galleryItems[lightboxIndex].title}
+                </p>
+              </div>
             </motion.div>
 
-            {/* Next */}
             <button
               className="absolute right-4 z-10 p-2 text-white/70 hover:text-white"
               onClick={(e) => { e.stopPropagation(); next(); }}

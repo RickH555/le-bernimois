@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useCart } from "@/lib/cart-context";
 import { getPickupSlots } from "@/lib/constants";
+import { createOrder } from "@/lib/supabase";
 import NeonButton from "../ui/NeonButton";
 
 const orderSchema = z.object({
@@ -27,6 +29,7 @@ function generateOrderNumber(): string {
 export default function OrderForm({ onConfirm }: OrderFormProps) {
   const { items, total, clearCart } = useCart();
   const slots = getPickupSlots();
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -34,19 +37,28 @@ export default function OrderForm({ onConfirm }: OrderFormProps) {
     formState: { errors, isSubmitting },
   } = useForm<OrderData>();
 
-  const onSubmit = (data: OrderData) => {
+  const onSubmit = async (data: OrderData) => {
+    setSubmitError(null);
     const orderNum = generateOrderNumber();
-    // Store in localStorage for reference
-    const order = {
-      number: orderNum,
-      items,
+
+    // Persist to Supabase
+    const result = await createOrder({
+      order_number: orderNum,
+      customer_name: data.name,
+      customer_phone: data.phone,
+      pickup_time: data.pickupTime,
+      comment: data.comment || null,
+      items: items.map((i) => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })),
       total,
-      ...data,
-      createdAt: new Date().toISOString(),
-    };
-    const orders = JSON.parse(localStorage.getItem("brn-orders") || "[]");
-    orders.push(order);
-    localStorage.setItem("brn-orders", JSON.stringify(orders));
+    });
+
+    if (!result) {
+      // Fallback to localStorage if Supabase fails
+      const order = { number: orderNum, items, total, ...data, createdAt: new Date().toISOString() };
+      const orders = JSON.parse(localStorage.getItem("brn-orders") || "[]");
+      orders.push(order);
+      localStorage.setItem("brn-orders", JSON.stringify(orders));
+    }
 
     clearCart();
     onConfirm(orderNum);
