@@ -7,11 +7,11 @@ import type { MenuItem } from "@/lib/menu-data";
 import { useCart } from "@/lib/cart-context";
 
 const categoryImages: Record<string, string> = {
-  burgers: "/images/menu/burger.png",
-  tacos: "/images/menu/tacos.png",
-  kebabs: "/images/menu/kebab.png",
-  boissons: "/images/menu/boissons.png",
-  desserts: "/images/menu/desserts.png",
+  burgers: "/images/menu/burger.jpg",
+  tacos: "/images/menu/tacos.jpg",
+  kebabs: "/images/menu/kebab.jpg",
+  boissons: "/images/menu/boissons.jpg",
+  desserts: "/images/menu/desserts.jpg",
 };
 
 interface MenuCardProps {

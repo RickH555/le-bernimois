@@ -7,18 +7,18 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const galleryItems = [
-  { id: 1, title: "Le Bernimois — Façade néon", image: "/images/hero/hero-cyberpunk.png" },
-  { id: 2, title: "Double Smash Burger néon", image: "/images/menu/burger.png" },
-  { id: 3, title: "Tacos frites fromage explosif", image: "/images/menu/tacos.png" },
-  { id: 4, title: "Kebab wrap grillé crudités", image: "/images/menu/kebab.png" },
-  { id: 5, title: "Milkshakes & cocktails néon", image: "/images/menu/boissons.png" },
-  { id: 6, title: "Brownie, donut & tiramisu", image: "/images/menu/desserts.png" },
-  { id: 7, title: "Le Bernimois — Vue de nuit", image: "/images/hero/hero-cyberpunk-2.png" },
-  { id: 8, title: "Cheese Burger double cheddar", image: "/images/menu/burger-2.png" },
-  { id: 9, title: "Tacos cheese frites doré", image: "/images/menu/tacos-2.png" },
-  { id: 10, title: "Kebab cornet sauce noire", image: "/images/menu/kebab-2.png" },
-  { id: 11, title: "Boissons fraîches au comptoir", image: "/images/menu/boissons-2.png" },
-  { id: 12, title: "Pâtisseries & gourmandises", image: "/images/menu/desserts-2.png" },
+  { id: 1, title: "Double Cheeseburger bacon sur ardoise", image: "/images/menu/burger.jpg" },
+  { id: 2, title: "Tacos poulet fromage frites sur planche", image: "/images/menu/tacos.jpg" },
+  { id: 3, title: "Kebab galette sauce blanche", image: "/images/menu/kebab.jpg" },
+  { id: 4, title: "Milkshake fraise, jus d'orange, cola, eau citronnée", image: "/images/menu/boissons.jpg" },
+  { id: 5, title: "Brownie chocolat, donut glacé, tiramisu & cookie", image: "/images/menu/desserts.jpg" },
+  { id: 6, title: "Le Bernimois — façade de nuit", image: "/images/hero/hero.jpg" },
+  { id: 7, title: "Classic Burger salade tomate sur planche bois", image: "/images/menu/burger-2.jpg" },
+  { id: 8, title: "Tacos XL grillé fromage coulant avec frites", image: "/images/menu/tacos-2.jpg" },
+  { id: 9, title: "Assiette kebab, frites & salade composée", image: "/images/menu/kebab-2.jpg" },
+  { id: 10, title: "Milkshakes chocolat & vanille caramel", image: "/images/menu/boissons-2.jpg" },
+  { id: 11, title: "Glace artisanale 2 boules chocolat & fraise", image: "/images/menu/desserts-2.jpg" },
+  { id: 12, title: "Le Bernimois — intérieur du snack", image: "/images/hero/hero-2.jpg" },
 ];
 
 export default function GaleriePage() {
@@ -39,7 +39,7 @@ export default function GaleriePage() {
           GALERIE
         </h1>
         <p className="mt-2 text-center text-sm text-text-secondary">
-          Nos plats en images — style cyberpunk anime
+          Nos plats, notre ambiance
         </p>
       </ScrollReveal>
 
@@ -61,7 +61,6 @@ export default function GaleriePage() {
                   className="object-cover transition-all duration-500 hover:brightness-110"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-                {/* Hover overlay with title */}
                 <div className="absolute inset-0 flex items-end bg-gradient-to-t from-bg-primary/80 via-transparent to-transparent p-3 opacity-0 transition-opacity duration-300 hover:opacity-100">
                   <p className="font-display text-xs tracking-wider text-text-primary">
                     {item.title}

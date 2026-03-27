@@ -10,19 +10,19 @@ const bestsellers = [
     name: "Le Bernimois Burger",
     description: "Double steak, cheddar fondu, sauce maison, oignons caramélisés",
     price: "9.50",
-    image: "/images/menu/burger.png",
+    image: "/images/menu/burger.jpg",
   },
   {
     name: "Tacos Cordon Bleu",
     description: "Cordon bleu, frites, fromage, sauce algérienne",
     price: "8.50",
-    image: "/images/menu/tacos.png",
+    image: "/images/menu/tacos.jpg",
   },
   {
     name: "Kebab Galette XL",
     description: "Viande grillée, salade, tomates, oignons, sauce blanche",
     price: "7.50",
-    image: "/images/menu/kebab.png",
+    image: "/images/menu/kebab.jpg",
   },
 ];
 
