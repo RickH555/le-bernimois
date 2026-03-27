@@ -33,8 +33,8 @@ export default function HeroSection() {
       {/* Background image cyberpunk */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero/hero.jpg"
-          alt="Le Bernimois — façade du snack la nuit"
+          src="/images/hero/hero-cyberpunk.png"
+          alt="Le Bernimois — façade cyberpunk"
           fill
           className="object-cover"
           priority
